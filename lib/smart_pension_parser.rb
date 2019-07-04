@@ -20,12 +20,14 @@ class SmartPensionParser
 
   def total_views
     @total_views = calculate_total_views.sort_by{ |key, value| value.size }.to_h  # Sorting the hash in decreasing order of its size
-    display_total_views(@total_views,"Total")
+    label="Total"
+    display_output(@total_views,label)
   end
 
   def unique_page_views
     @unique_views = calculate_unique_views.sort_by{ |key, value| value.size }.to_h   # Sorting the hash in decreasing order of its size
-    display_unique_views(@unique_views,"Unique")
+    label="Unique"
+    display_output(@unique_views,label)
   end
 
   def calculate_total_views
@@ -40,20 +42,12 @@ class SmartPensionParser
     end
   end
 
-  def display_total_views(total_views,label)
+  def display_output(views,label)
     puts "************#{label} Views ********************"
     puts '| S.no |  PAGE | COUNT'
     puts '----------------------------------------------'
-    total_views.each_with_index do |(page, count), index|
+    views.each_with_index do |(page, count), index|
       puts "| #{index} | #{page} | #{count}"
-    end
-  end
-   def display_unique_views(unique_views,label)
-    puts "*************#{label} Views******************"
-    puts '| S.no |  PAGE | COUNT'
-    puts '----------------------------------------------'
-    unique_views.each_with_index do |(page, count), index|
-      puts "| #{index} | #{page} | #{count} "
     end
   end
 end
