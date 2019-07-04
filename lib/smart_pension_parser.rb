@@ -30,6 +30,8 @@ class SmartPensionParser
     display_output(@unique_views,label)
   end
 
+  private
+  
   def calculate_total_views
     @logs.each_with_object({}) do |(key, value), temp_list|
       temp_list[key] = value.size   # Returning a hash with all occurrence count of each IP address
